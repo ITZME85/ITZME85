@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>age</th>
+                <th>email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in item %}
+            <tr>
+                <td>{{i.name}}</td>
+                <td>{{i.age}}</td>
+                <td>{{i.email}}</td>
+                <td>
+                    <form action="{% url 'delete' i.pk %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+                <td>
+                    <a href=" {% url 'edit' i.pk %} ">edit</a>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</body>
+</html>
